@@ -1,0 +1,26 @@
+{{#if cookie.base}}
+    <h1>Configure your cookie</h1>
+
+    <h2>Select cookie base</h2>
+
+    {{#each bases}}
+        <a href="/configurator/select-base/{{this.[0]}}" class="btn">Select {{this.[0]}} for {{this.[1]}} PLN</a>
+    {{/each}}
+
+    <h2>Select addons</h2>
+
+    {{#each addons}}
+        <a href="/configurator/add-addon/{{this.[0]}}" class="btn {{#if (isInArray @root.cookie.addons this.[0])}}btn-disabled{{/if}}">Add {{this.[0]}} for {{this.[1]}} PLN</a>
+    {{/each}}
+    {{> cookie-preview}}
+    {{> addons}}
+    <a href="/order/summary" class="btn btn-order">Order <img src="/assets/images/shopping-cart.png" alt="" class="basket-img"></a>
+{{else}}
+    <div class="error"><p>Please select base of cookie</p>
+        <p>
+            {{#each bases}}
+            <a href="/configurator/select-base/{{this.[0]}}" class="btn">Select {{this.[0]}} for {{this.[1]}} PLN</a>
+        {{/each}}
+        </p>
+    </div>
+{{/if}}
